@@ -3,5 +3,5 @@
 @section('title', 'Welcome')
 
 @section('content')
-<h2>Home Page</h2>
+<h2>Listing for add-on {{ Request('id') ?? ""}}</h2>
 @endsection

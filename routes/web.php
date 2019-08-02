@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('/addons', function() {
-    return view('listing');
+    return view('listing.listing');
 });
 
 Route::get('/info', function() {
-    return view('listing');
+    return view('listing.info');
 });
