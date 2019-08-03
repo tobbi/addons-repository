@@ -8,6 +8,13 @@
 <h2>Add add-on...</h2>
 </div>
 <form>
+<div class="form-group row">
+    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">File</label>
+    <div class="col-sm-10">
+    <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on...">
+    </div>
+    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
   <div class="form-group row">
     <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-10">
