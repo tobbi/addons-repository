@@ -19,6 +19,10 @@ Route::get('/addons', function() {
     return view('listing.listing');
 });
 
+Route::get('/addons/add', function() {
+    return view('listing.add');
+});
+
 Route::get('/info', function() {
     return view('listing.info');
 });
