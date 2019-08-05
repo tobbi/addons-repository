@@ -9,47 +9,47 @@
 </div>
 <form>
 <div class="form-group row">
-    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">File</label>
+    <label for="addonZIP" class="col-sm-2 col-form-label">File</label>
     <div class="col-sm-10">
-    <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on...">
+    <input type="file" class="form-control" id="addonZIP" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on...">
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <div class="form-group row">
-    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Name</label>
+    <label for="addonName" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name of the add-on">
+    <input type="text" class="form-control" id="addonName" aria-describedby="emailHelp" placeholder="Name of the add-on">
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <div class="form-group row">
-    <label for="exampleInputPassword1" class="col-sm-2 col-form-label">ID</label>
+    <label for="addonID" class="col-sm-2 col-form-label">ID</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="ID (auto-generated from name)" readonly>
+    <input type="text" class="form-control" id="addonID" placeholder="ID (auto-generated from name)" readonly>
     </div>
   </div>
   <div class="form-group row">
-    <label for="exampleInputPassword1" class="col-sm-2 col-form-label">Version</label>
+    <label for="addonVersion" class="col-sm-2 col-form-label">Version</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Version">
+    <input type="password" class="form-control" id="addonVersion" placeholder="Version">
     </div>
   </div>
   <div class="form-group row">
-    <label for="exampleInputPassword1" class="col-sm-2 col-form-label">Author</label>
+    <label for="addonAuthor" class="col-sm-2 col-form-label">Author</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Author">
+    <input type="password" class="form-control" id="addonAuthor" placeholder="Author">
     </div>
   </div>
   <div class="form-group row">
-    <label for="exampleInputPassword1" class="col-sm-2 col-form-label">License</label>
+    <label for="addonLicense" class="col-sm-2 col-form-label">License</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="License">
+    <input type="password" class="form-control" id="addonLicense" placeholder="License">
     </div>
   </div>
   <div class="form-group row">
-    <label for="exampleInputPassword1" class="col-sm-2 col-form-label">SuperTux versions</label>
+    <label for="addonSTVersion" class="col-sm-2 col-form-label">SuperTux versions</label>
     <div class="col-sm-10">
-    <input type="checkbox" class="form-control" id="exampleInputPassword1" placeholder="SuperTux versions">
+    <input type="checkbox" class="form-control" id="addonSTVersion" placeholder="SuperTux versions">
     </div>
   </div>
   <!-- <div class="form-check row">
