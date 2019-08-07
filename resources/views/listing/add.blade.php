@@ -46,7 +46,7 @@
     <div class="col-sm-10">
     <select class="form-control" id="exampleFormControlSelect1">
       @foreach($licenses as $license)
-      <option>{{ $license->title }}</option>
+      <option value="{{ $license->id }}">{{ $license->title }}</option>
       @endforeach
     </select>
     <!-- <input type="text" class="form-control" id="addonLicense" placeholder="License" name='addon_license'> -->
