@@ -26,6 +26,11 @@
             <a class="dropdown-item" href="/addons">All versions</a>
             </div>
         </li>
+        @auth
+        <li class="nav-item">
+            <a class="nav-link" href="/addons/add">Upload add-on</a>
+        </li>
+        @endauth
         {{-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
         </li> --}}

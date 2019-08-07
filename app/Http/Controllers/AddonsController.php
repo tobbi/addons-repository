@@ -34,6 +34,6 @@ class AddonsController extends Controller
         $addon->enabled = true;
         // echo 'Request: '.$request;
         // echo 'Addon name: '.$request->addon_name;
-        AddonsController::ShowAll();
+        // AddonsController::ShowAll();
     }
 }
