@@ -12,39 +12,44 @@
 <div class="form-group row">
     <label for="addonZIP" class="col-sm-2 col-form-label">File</label>
     <div class="col-sm-10">
-    <input type="file" class="form-control" id="addonZIP" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on...">
+    <input type="file" class="form-control" id="addonZIP" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on..." name="addon_file">
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <div class="form-group row">
     <label for="addonName" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="addonName" aria-describedby="emailHelp" placeholder="Name of the add-on">
+    <input type="text" class="form-control" id="addonName" aria-describedby="emailHelp" placeholder="Name of the add-on" name="addon_name">
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <div class="form-group row">
     <label for="addonID" class="col-sm-2 col-form-label">ID</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="addonID" placeholder="ID (auto-generated from name)" readonly>
+    <input type="text" class="form-control" id="addonID" placeholder="ID (auto-generated from name)" name="addon_id" readonly>
     </div>
   </div>
   <div class="form-group row">
     <label for="addonVersion" class="col-sm-2 col-form-label">Version</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="addonVersion" placeholder="Version">
+    <input type="text" class="form-control" id="addonVersion" placeholder="Version" name="addon_version">
     </div>
   </div>
   <div class="form-group row">
     <label for="addonAuthor" class="col-sm-2 col-form-label">Author</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="addonAuthor" placeholder="Author">
+    <input type="text" class="form-control" id="addonAuthor" placeholder="Author" name="addon_author">
     </div>
   </div>
   <div class="form-group row">
     <label for="addonLicense" class="col-sm-2 col-form-label">License</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="addonLicense" placeholder="License">
+    <select class="form-control" id="exampleFormControlSelect1">
+      @foreach($licenses as $license)
+      <option>{{ $license->title }}</option>
+      @endforeach
+    </select>
+    <!-- <input type="text" class="form-control" id="addonLicense" placeholder="License" name='addon_license'> -->
     </div>
   </div>
   <div class="form-group row">
