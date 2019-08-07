@@ -19,3 +19,6 @@ Route::get('/addons', 'AddonsController@showAll');
 Route::get('/addons/add', 'AddonsController@add');
 Route::get('/info', 'AddonsController@viewDetails');
 Route::post('/addons/store', 'AddonsController@storeAddon');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
