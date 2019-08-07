@@ -1,11 +1,22 @@
 @extends('layout.layout')
 
-@section('title', 'Add Add-on')
+@section('additional_head_tags')
+<script type="text/javascript">
+function createSlug($el)
+{
+  var title = $el.value.trim().toLowerCase()
+                .replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s/g, '-');
+  document.getElementById('addonID').value = title;
+}
+</script>
+@endsection
+
+@section('title', 'Upload Add-on')
 
 @section('content')
 <div class="container">
 <div class='page-header'>
-<h2>Add add-on...</h2>
+<h2>Upload add-on</h2>
 </div>
 <form action="/addons/store" method="POST" enctype="multipart/form-data">
 {{ csrf_field() }}
@@ -19,7 +30,7 @@
   <div class="form-group row">
     <label for="addonName" class="col-sm-2 col-form-label">Name</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="addonName" aria-describedby="emailHelp" placeholder="Name of the add-on" name="addon_name">
+    <input type="text" class="form-control" id="addonName" aria-describedby="emailHelp" placeholder="Name of the add-on" name="addon_name" oninput="createSlug(this);">
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
