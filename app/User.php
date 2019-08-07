@@ -36,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    private static function getByUsername($username)
+    {
+        return User::where('name', '=', $username);
+    }
+    
+    /**
+     * Checks whether a username already exists.
+     * @param $username The username to check
+     * @return true if the user exists, false if it does not
+     */
+    public static function hasUser($username)
+    {
+        return User::getByUsername($username)->exists();
+    }
 }

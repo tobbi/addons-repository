@@ -32,15 +32,6 @@ class createUser extends Command
         parent::__construct();
     }
 
-    /**
-     * Checks whether a username already exists.
-     * @param $username The username to check
-     * @return true if the user exists, false if it does not
-     */
-    private function hasUser($username)
-    {
-        return User::where('name', '=', $username)->exists();
-    }
 
     /**
      * Validation checks for username
@@ -49,7 +40,7 @@ class createUser extends Command
      */
     private function checkUser($username)
     {
-        if($this->hasUser($username))
+        if(User::hasUser($username))
         {
             $this->error('The specified username already exists! Please specify a different username!');
             return false;
