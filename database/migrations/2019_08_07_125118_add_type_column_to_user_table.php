@@ -14,7 +14,7 @@ class AddTypeColumnToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role')->unsigned();
+            $table->integer('role')->unsigned()->default(0);
         });
     }
 
