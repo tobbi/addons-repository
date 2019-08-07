@@ -15,14 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/addons', function() {
-    return view('listing.listing');
-});
-
-Route::get('/addons/add', function() {
-    return view('listing.add');
-});
-
-Route::get('/info', function() {
-    return view('listing.info');
-});
+Route::get('/addons', 'AddonsController@showAll');
+Route::get('/addons/add', 'AddonsController@add');
+Route::get('/info', 'AddonsController@viewDetails');
+Route::post('/addons/store', 'AddonsController@storeAddon');

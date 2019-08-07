@@ -7,7 +7,8 @@
 <div class='page-header'>
 <h2>Add add-on...</h2>
 </div>
-<form>
+<form action="/addons/store" method="POST" enctype="multipart/form-data">
+{{ csrf_field() }}
 <div class="form-group row">
     <label for="addonZIP" class="col-sm-2 col-form-label">File</label>
     <div class="col-sm-10">
@@ -31,19 +32,19 @@
   <div class="form-group row">
     <label for="addonVersion" class="col-sm-2 col-form-label">Version</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="addonVersion" placeholder="Version">
+    <input type="text" class="form-control" id="addonVersion" placeholder="Version">
     </div>
   </div>
   <div class="form-group row">
     <label for="addonAuthor" class="col-sm-2 col-form-label">Author</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="addonAuthor" placeholder="Author">
+    <input type="text" class="form-control" id="addonAuthor" placeholder="Author">
     </div>
   </div>
   <div class="form-group row">
     <label for="addonLicense" class="col-sm-2 col-form-label">License</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="addonLicense" placeholder="License">
+    <input type="text" class="form-control" id="addonLicense" placeholder="License">
     </div>
   </div>
   <div class="form-group row">
