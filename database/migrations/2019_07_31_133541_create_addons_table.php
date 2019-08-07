@@ -18,10 +18,10 @@ class CreateAddonsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('version');
-            $table->text('description');
+            $table->text('description')->nullable;
             $table->string('slug');
             $table->string('http_url');
-            $table->string('thumb_url');
+            $table->string('thumb_url')->nullable;
             $table->string('md5');
             $table->integer('author_id')->unsigned();
             $table->integer('license_id')->unsigned();
