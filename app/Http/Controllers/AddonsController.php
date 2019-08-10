@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Addon;
 use App\License;
+use Sexp\Sexp;
 use Illuminate\Http\Request;
 
 class AddonsController extends Controller
 {
+    /**
+     * Region: Views
+     */
     public function ShowAll()
     {
         return view('listing.listing');
@@ -24,6 +28,11 @@ class AddonsController extends Controller
         return view('listing.info');
     }
 
+    public function Migrate()
+    {
+        return view('listing.migrate');
+    }
+
     public function StoreAddon(Request $request)
     {
         $addon = new Addon();
@@ -35,5 +44,11 @@ class AddonsController extends Controller
         // echo 'Request: '.$request;
         // echo 'Addon name: '.$request->addon_name;
         // AddonsController::ShowAll();
+    }
+
+    public function MigrateFromNFO(Request $request)
+    {
+        $nfo_url = $request->nfoURL;
+        echo $nfo_url;
     }
 }

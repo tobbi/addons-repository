@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "f68c6e1f734287926a609c24881caa17",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -759,6 +759,33 @@
                 "storage"
             ],
             "time": "2019-06-18T20:09:29+00:00"
+        },
+        {
+            "name": "maths22/sexp-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maths22/sexp-php.git",
+                "reference": "b7bf8c7df7820ac492140a87245e495fbc34a780"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maths22/sexp-php/zipball/b7bf8c7df7820ac492140a87245e495fbc34a780",
+                "reference": "b7bf8c7df7820ac492140a87245e495fbc34a780",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DrSlump\\": "library/DrSlump"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "S-expression parser for PHP",
+            "time": "2016-04-09T03:58:46+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4651,7 +4678,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "maths22/sexp-php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -30,6 +30,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/addons/add">Upload add-on</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/addons/migrate">Migrate .nfo file</a>
+        </li>
         @endauth
         {{-- <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
