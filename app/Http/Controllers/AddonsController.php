@@ -14,7 +14,8 @@ class AddonsController extends Controller
      */
     public function ShowAll()
     {
-        return view('listing.listing');
+        $addons = Addon::all();
+        return view('listing.listing', ['addons' => $addons]);
     }
 
     public function Add()
