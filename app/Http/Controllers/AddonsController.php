@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Addon;
 use App\License;
-use Sexp\Sexp;
+use DrSlump\Sexp;
 use Illuminate\Http\Request;
 
 class AddonsController extends Controller
@@ -46,9 +46,34 @@ class AddonsController extends Controller
         // AddonsController::ShowAll();
     }
 
+    private function _parseAddonInfo(array $addonInfo)
+    {
+        //
+    }
+
     public function MigrateFromNFO(Request $request)
     {
         $nfo_url = $request->nfoURL;
-        echo $nfo_url;
+        $contents = file_get_contents($nfo_url);
+
+        $parser = new Sexp();
+        $lisp_tree = $parser->parse($contents);
+
+        foreach($lisp_tree as $item)
+        {
+            $type = gettype($item);
+            switch($type)
+            {
+                case "array":
+                if($item[0] == "supertux-addoninfo")
+                {
+                    $this->_parseAddonInfo($item);
+                }
+                break;
+
+                default:
+                break;
+            }
+        }
     }
 }
