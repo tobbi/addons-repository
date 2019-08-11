@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'Migrate Add-ons')
+@section('title', 'Import Add-ons')
 
 @section('content')
 <div class="container">

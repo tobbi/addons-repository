@@ -27,11 +27,14 @@
             </div>
         </li>
         @auth
-        <li class="nav-item">
-            <a class="nav-link" href="/addons/add">Upload add-on</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/addons/migrate">Migrate .nfo file</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="NewAddonNavbar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            New add-on
+            </a>
+            <div class="dropdown-menu" aria-labelledby="NewAddonNavbar">
+            <a class="dropdown-item" href="/addons/add">Upload</a>
+            <a class="dropdown-item" href="/addons/migrate">Import from .nfo file</a>
+            </div>
         </li>
         @endauth
         {{-- <li class="nav-item">
