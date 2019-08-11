@@ -75,7 +75,14 @@ class AddonsController extends Controller
                     $value = $property[1];
                     switch($key)
                     {
+                        case "version":
+                        break;
+
+                        case "id":
+                        $id = $value;
+                        break;
                         case "kind":
+                        case "type":
                         $kind = ($value == "Worldmap") ? 1 : 2;
                         break;
                         case "title":
@@ -87,6 +94,7 @@ class AddonsController extends Controller
                         case "license":
                         $license = $value;
                         break;
+                        case "url":
                         case "http-url":
                         $httpUrl = $value;
                         break;
@@ -108,14 +116,14 @@ class AddonsController extends Controller
         $addon->title = $title;
         $addon->version = 0.1;
         $addon->description = $title;
-        $addon->slug = "addon-slug-tbd";
+        $addon->slug = $id != null ? $id : "addon-slug-tbd";
         $addon->http_url = $httpUrl;
         $addon->thumb_url = $httpUrl;
         $addon->md5 = $md5;
         $addon->author_id = 1;
         $addon->license_id = 1;
         $addon->enabled = true;
-        $addon->type = $kind;
+        $addon->type = $kind != null ? $kind : 1;
         $addon->save();
     }
 
