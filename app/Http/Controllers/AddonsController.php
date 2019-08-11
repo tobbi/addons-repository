@@ -48,7 +48,20 @@ class AddonsController extends Controller
 
     private function _parseAddonInfo(array $addonInfo)
     {
-        //
+        foreach($addonInfo as $property)
+        {
+            $type = gettype($property);
+            switch($type)
+            {
+                case "string":
+                    echo $property."<br/>";
+                break;
+
+                case "array":
+                    echo $property[0]."<br/>"; // key
+                break;
+            }
+        }
     }
 
     public function MigrateFromNFO(Request $request)
@@ -58,6 +71,12 @@ class AddonsController extends Controller
 
         $parser = new Sexp();
         $lisp_tree = $parser->parse($contents);
+
+        if($lisp_tree[0] != "supertux-addons")
+        {
+            echo "Invalid lisp file specified";
+            return;
+        }
 
         foreach($lisp_tree as $item)
         {
