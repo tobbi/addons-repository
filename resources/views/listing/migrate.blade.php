@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
 <div class='page-header'>
-<h2>Migrate add-ons</h2>
+<h2>Import add-ons</h2>
 </div>
 <form action="/addons/parse-nfo" method="POST" enctype="multipart/form-data">
 {{ csrf_field() }}
