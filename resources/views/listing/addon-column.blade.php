@@ -5,7 +5,7 @@
         <h5 class="card-title"><a href="/info?id={{ $id ?? 0 }}">{{ $title ?? "My add-on"}}</a><small class="float-right">{{ $version ?? "v0.0.1" }}</small></h5>
         <small class="float-right">By Tobbi</small>
         <p class="card-text">{{ $description ?? "This is a great add-on"}}</p>
-        <a href="/download?id={{ $id ?? 0}}" class="btn btn-primary float-right">Download</a>
+        <a href="{{ $link ?? 0 }}" class="btn btn-primary float-right">Download</a>
         </div>
     </div>
 </div>

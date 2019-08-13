@@ -11,6 +11,7 @@
       @component('listing.addon-column')
         @slot('title'){{ $addon->title }} @endslot
         @slot('id'){{ $addon->id }} @endslot
+        @slot('link') {{ $addon->http_url }} @endslot
       @endcomponent
     @endforeach
     </div>
