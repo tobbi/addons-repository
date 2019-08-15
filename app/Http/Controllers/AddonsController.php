@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Addon;
+use App\Jobs\ImportAddon;
 use App\License;
 use DrSlump\Sexp;
 use Illuminate\Http\Request;
@@ -125,6 +126,10 @@ class AddonsController extends Controller
         $addon->enabled = true;
         $addon->type = $kind != null ? $kind : 1;
         $addon->save();
+
+        // Do further import steps:
+        ImportAddon::dispatch($addon);
+
         $this->addon_cnt++;
     }
 

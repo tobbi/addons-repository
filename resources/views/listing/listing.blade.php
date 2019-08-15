@@ -12,6 +12,7 @@
         @slot('title'){{ $addon->title }} @endslot
         @slot('id'){{ $addon->id }} @endslot
         @slot('link') {{ $addon->http_url }} @endslot
+        @slot('version') v{{$addon->version }} @endslot
       @endcomponent
     @endforeach
     </div>
