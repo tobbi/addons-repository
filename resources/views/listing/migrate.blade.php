@@ -8,7 +8,10 @@ function performGETRequest($caller)
   var modal = $("#importModal");
   var $progressBar = $('.modal-body .progress-bar-import');
   $caller.setAttribute('disabled', '');
+  
   $progressBar.width('20%');
+  $progressBar.removeClass('bg-danger bg-success');
+
   $('#importModalLabel').text("Importing nfo file...");
   modal.modal();
 
@@ -71,7 +74,7 @@ function performGETRequest($caller)
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Import another nfo file</button>
-        <button type="button" class="btn btn-primary">Return to listing</button>
+        <a class="btn btn-primary" href="/addons" role="button">Return to listing</a>
       </div>
     </div>
   </div>

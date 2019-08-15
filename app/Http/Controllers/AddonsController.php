@@ -142,14 +142,27 @@ class AddonsController extends Controller
         }
     }
 
-    public function MigrateFromNFO(Request $request)
+    private function ClearResponse()
     {
-        $nfo_url = $request->nfoURL;
         $response_arr = array(
             "error_code" => -1,
             "text" => "",
             "warnings" => array()
         );
+    }
+
+    private function SetResponse($err_code, $msg)
+    {
+        $response_arr["error_code"] = $err_code;
+        $response_arr["text"] = $msg;
+
+        echo json_encode($response_arr);
+    }
+
+    public function MigrateFromNFO(Request $request)
+    {
+        $this->ClearResponse();
+        $nfo_url = $request->nfoURL;
         $this->addon_cnt = 0;
 
         if($this->urlExists($nfo_url))
@@ -158,9 +171,7 @@ class AddonsController extends Controller
         }
         else
         {
-            $response_arr["error_code"] = 1;
-            $response_arr["text"] = "The file you specified is not accessible";
-            echo json_encode($response_arr);
+            $this->SetResponse(1, "The file you specified is not accessible");
             return;
         }
 
@@ -169,9 +180,7 @@ class AddonsController extends Controller
 
         if($lisp_tree[0] != "supertux-addons")
         {
-            $response_arr["error_code"] = 2;
-            $response_arr["text"] = "The file you specified does not appear to have a valid format";
-            echo json_encode($response_arr);
+            $this->SetResponse(2, "The file you specified does not appear to have a valid format");
             return;
         }
 
@@ -192,9 +201,6 @@ class AddonsController extends Controller
             }
         }
 
-        $response_arr["error_code"] = -1;
-        $response_arr["text"] = $this->addon_cnt." add-ons successfully imported.";
-
-        echo json_encode($response_arr);
+        $this->SetResponse(-1, $this->addon_cnt." add-ons successfully imported.");
     }
 }
