@@ -67,7 +67,7 @@ class AddonsController extends Controller
             switch($type)
             {
                 case "string":
-                    echo $property."<br/>";
+                    // echo $property."<br/>";
                 break;
 
                 case "array":
@@ -106,7 +106,7 @@ class AddonsController extends Controller
                         break;
 
                         default:
-                            echo "Unknown value: ".$key;
+                            array_push($response_arr[warnings], "Unknown value ".$key." in NFO file");
                         break;
                     }
                 break;
@@ -125,19 +125,53 @@ class AddonsController extends Controller
         $addon->enabled = true;
         $addon->type = $kind != null ? $kind : 1;
         $addon->save();
+        $this->addon_cnt++;
+    }
+
+    private $response_arr = null;
+    private $addon_cnt = 0;
+
+    private function urlExists($file)
+    {
+        $file_headers = @get_headers($file);
+        if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     public function MigrateFromNFO(Request $request)
     {
         $nfo_url = $request->nfoURL;
-        $contents = file_get_contents($nfo_url);
+        $response_arr = array(
+            "error_code" => -1,
+            "text" => "",
+            "warnings" => array()
+        );
+        $this->addon_cnt = 0;
+
+        if($this->urlExists($nfo_url))
+        {
+            $contents = file_get_contents($nfo_url);
+        }
+        else
+        {
+            $response_arr["error_code"] = 1;
+            $response_arr["text"] = "The file you specified is not accessible";
+            echo json_encode($response_arr);
+            return;
+        }
 
         $parser = new Sexp();
         $lisp_tree = $parser->parse($contents);
 
         if($lisp_tree[0] != "supertux-addons")
         {
-            echo "Invalid lisp file specified";
+            $response_arr["error_code"] = 2;
+            $response_arr["text"] = "The file you specified does not appear to have a valid format";
+            echo json_encode($response_arr);
             return;
         }
 
@@ -157,5 +191,10 @@ class AddonsController extends Controller
                 break;
             }
         }
+
+        $response_arr["error_code"] = -1;
+        $response_arr["text"] = $this->addon_cnt." add-ons successfully imported.";
+
+        echo json_encode($response_arr);
     }
 }
