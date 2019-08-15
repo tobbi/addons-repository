@@ -14,6 +14,6 @@ class Addon extends Model
     }
 
     public function getRealAuthorName() {
-        return $this->author->linkedUser->name ?? $this->author->name;
+        return $this->author->getLinkedUser()->name ?? $this->author->name;
     }
 }

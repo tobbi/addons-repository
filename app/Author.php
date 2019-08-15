@@ -16,4 +16,9 @@ class Author extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function getLinkedUser()
+    {
+        return User::where('id', '=', $this->id)->first();
+    }
 }
