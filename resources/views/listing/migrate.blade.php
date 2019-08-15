@@ -16,7 +16,7 @@
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
-  <button type="submit" class="btn btn-primary">Migrate add-ons</button>
+  <button type="submit" class="btn btn-primary">Import add-ons</button>
 </form>
 </div>
 @endsection
