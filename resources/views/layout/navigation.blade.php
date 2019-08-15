@@ -26,6 +26,18 @@
             <a class="dropdown-item" href="/addons">All versions</a>
             </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarType" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            By type
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarType">
+            @foreach($types as $type)
+                <a class="dropdown-item" href="#">{{ $type }}</a>
+            @endforeach()
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/addons">All add-ons</a>
+            </div>
+        </li>
         @auth
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="NewAddonNavbar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
