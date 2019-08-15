@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Addon;
+use App\Author;
 use App\Jobs\ImportAddon;
 use App\License;
 use DrSlump\Sexp;
@@ -113,6 +114,20 @@ class AddonsController extends Controller
                 break;
             }
         }
+
+        $targetAuthor = Author::where('name', $author)->first();
+        $authorId = null;
+        if($targetAuthor == null)
+        {
+            $newAuthor = new Author();
+            $newAuthor->name = $author;
+            $authorId = $newAuthor->save();
+        }
+        else
+        {
+            $authorId = $targetAuthor->id;
+        }
+
         $addon = new Addon();
         $addon->title = $title;
         $addon->version = 0.1;
@@ -121,7 +136,7 @@ class AddonsController extends Controller
         $addon->http_url = $httpUrl;
         $addon->thumb_url = $httpUrl;
         $addon->md5 = $md5;
-        $addon->author_id = 1;
+        $addon->author_id = $authorId;
         $addon->license_id = 1;
         $addon->enabled = true;
         $addon->type = $kind != null ? $kind : 1;
