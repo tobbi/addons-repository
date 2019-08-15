@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'Welcome')
+@section('title', $addon->title)
 
 @section('content')
 <h2>{{ $addon->title }}</h2>
