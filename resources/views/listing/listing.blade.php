@@ -13,7 +13,7 @@
         @slot('id'){{ $addon->id }} @endslot
         @slot('link') {{ $addon->http_url }} @endslot
         @slot('version') v{{$addon->version }} @endslot
-        @slot('author') {{ $addon->author->name }} @endslot
+        @slot('author') {{ $addon->getRealAuthorName() }} @endslot
       @endcomponent
     @endforeach
     </div>

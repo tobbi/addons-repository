@@ -12,4 +12,8 @@ class Addon extends Model
     {
         return $this->belongsTo('App\Author');
     }
+
+    public function getRealAuthorName() {
+        return $this->author->linkedUser->name ?? $this->author->name;
+    }
 }

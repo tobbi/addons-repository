@@ -11,4 +11,9 @@ class Author extends Model
     {
         return $this->hasMany('App\Addon');
     }
+
+    public function linkedUser()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
