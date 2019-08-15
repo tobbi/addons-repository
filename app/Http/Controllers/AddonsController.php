@@ -26,9 +26,10 @@ class AddonsController extends Controller
         return view('listing.add', ['licenses' => $licenses]);
     }
 
-    public function ViewDetails()
+    public function ViewDetails($id)
     {
-        return view('listing.info');
+        $addon = Addon::where('id', $id)->first();
+        return view('listing.info', ['addon' => $addon]);
     }
 
     public function Migrate()
