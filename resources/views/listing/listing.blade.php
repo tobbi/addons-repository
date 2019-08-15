@@ -14,6 +14,7 @@
         @slot('link') {{ $addon->http_url }} @endslot
         @slot('version') v{{$addon->version }} @endslot
         @slot('author') {{ $addon->getRealAuthorName() }} @endslot
+        @slot('hasLinkedUser') {{ $addon->author->hasLinkedUser() }} @endslot
       @endcomponent
     @endforeach
     </div>

@@ -19,6 +19,14 @@ class Author extends Model
 
     public function getLinkedUser()
     {
-        return User::where('id', '=', $this->id)->first();
+        if(!$this->hasLinkedUser())
+            return null;
+
+        return User::where('id', $this->user_id)->first();
+    }
+
+    public function hasLinkedUser()
+    {
+        return $this->user_id != null;
     }
 }
