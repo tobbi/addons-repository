@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Addon;
+use App\AddonType;
 use App\Author;
 use App\Jobs\ImportAddon;
 use App\License;
@@ -84,26 +85,33 @@ class AddonsController extends Controller
                         case "id":
                         $id = $value;
                         break;
+
                         case "kind":
                         case "type":
-                        $kind = ($value == "Worldmap") ? 1 : 2;
+                        $kind = $value;
                         break;
+                        
                         case "title":
                         $title = $value;
                         break;
+                        
                         case "author":
                         $author = $value;
                         break;
+                        
                         case "license":
                         $license = $value;
                         break;
+                        
                         case "url":
                         case "http-url":
                         $httpUrl = $value;
                         break;
+                        
                         case "file":
                         $file = $value;
                         break;
+                        
                         case "md5":
                         $md5 = $value;
                         break;
@@ -114,6 +122,17 @@ class AddonsController extends Controller
                     }
                 break;
             }
+        }
+
+        $targetType = AddonType::where('nfo_key', $kind)->first();
+        $type = null;
+        if($targetType != null)
+        {
+            $type = $targetType->id;
+        }
+        else
+        {
+            $type = AddonType::first()->id;
         }
 
         $targetAuthor = Author::where('name', $author)->first();
@@ -140,7 +159,7 @@ class AddonsController extends Controller
         $addon->author_id = $authorId;
         $addon->license_id = 1;
         $addon->enabled = true;
-        $addon->type = $kind != null ? $kind : 1;
+        $addon->type = $type;
         $addon->save();
 
         // Do further import steps:

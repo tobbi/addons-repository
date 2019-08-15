@@ -32,7 +32,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarType">
             @foreach($types as $type)
-                <a class="dropdown-item" href="#">{{ $type }}</a>
+                <a class="dropdown-item" href="#">{{ $type->type }}</a>
             @endforeach()
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/addons">All add-ons</a>

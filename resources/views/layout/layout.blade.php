@@ -79,7 +79,7 @@
         @yield('additional_head_tags')
     </head>
     <body>
-        @component('layout.navigation', ['versions' => ['0.5.1', '0.6.0'], 'types' => ['Worldmap', 'Levelset', 'Language pack']])
+        @component('layout.navigation')
         @endcomponent
         <!-- 
         <div class="flex-center position-ref full-height">
