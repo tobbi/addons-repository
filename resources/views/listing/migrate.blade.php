@@ -9,9 +9,9 @@ function performGETRequest($caller)
   var $progressBar = $('.modal-body .progress-bar-import');
   $caller.setAttribute('disabled', '');
   
-  $progressBar.width('20%');
   $progressBar.text("");
   $progressBar.removeClass('bg-danger bg-success');
+  $progressBar.addClass('progress-bar-animated');
 
   $('#importModalLabel').text("Importing nfo file...");
   modal.modal();
@@ -25,7 +25,6 @@ function performGETRequest($caller)
   function(response) {
     $progressBar.text(response.text);
     $progressBar.removeClass('progress-bar-animated');
-    $progressBar.width('100%');
     if(response.error_code > -1)
     {
       $('#importModalLabel').text("Import failed");
@@ -43,7 +42,6 @@ function performGETRequest($caller)
       $progressBar.text("Import failed!");
       $progressBar.addClass('bg-danger');
       $progressBar.removeClass('progress-bar-animated');
-      $progressBar.width('100%');
       $caller.removeAttribute('disabled');
     });
 }
@@ -77,7 +75,7 @@ function performGETRequest($caller)
       </div>
       <div class="modal-body">
       <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-import" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 75%">Importing add-ons...</div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-import" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Importing add-ons...</div>
       </div>
       </div>
       <div class="modal-footer">
