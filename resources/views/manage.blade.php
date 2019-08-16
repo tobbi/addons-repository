@@ -18,7 +18,13 @@
       <td><a href="{{ route('addon_info', ['id' => $addon->id]) }}">{{ $addon->title }}</a></td>
       <td>{{ $addon->slug }}</td>
       <td>{{ $addon->author->name }}</td>
-      <td>actions</td>
+      <td>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
+            <button type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+        </div>
+      </td>
     </tr>
   @endforeach
   </tbody>
