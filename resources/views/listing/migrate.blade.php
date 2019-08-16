@@ -20,7 +20,7 @@ function performGETRequest($caller)
   {
     _token: "{{ csrf_token() }}",
     nfoURL: nfoUrl
-  },
+  }).done(
   function(response) {
     $progressBar.text(response.text);
     $progressBar.removeClass('progress-bar-animated');
@@ -36,7 +36,15 @@ function performGETRequest($caller)
       $progressBar.addClass('bg-success');
     }
     $caller.removeAttribute('disabled');
-  });
+  }).fail(
+    function(response)
+    {
+      $progressBar.text("Import failed!");
+      $progressBar.addClass('bg-danger');
+      $progressBar.removeClass('progress-bar-animated');
+      $progressBar.width('100%');
+      $caller.removeAttribute('disabled');
+    });
 }
 </script>
 @endsection
