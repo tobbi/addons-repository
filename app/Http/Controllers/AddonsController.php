@@ -117,7 +117,7 @@ class AddonsController extends Controller
                         break;
 
                         default:
-                            array_push($response_arr[warnings], "Unknown value ".$key." in NFO file");
+                            array_push($responseArr[warnings], "Unknown value ".$key." in NFO file");
                         break;
                     }
                 break;
@@ -168,7 +168,7 @@ class AddonsController extends Controller
         $this->addon_cnt++;
     }
 
-    private $response_arr = null;
+    private $responseArr = null;
     private $addon_cnt = 0;
 
     private function urlExists($file)
@@ -184,19 +184,19 @@ class AddonsController extends Controller
 
     private function ClearResponse()
     {
-        $response_arr = array(
+        $responseArr = array(
             "error_code" => -1,
             "text" => "",
             "warnings" => array()
         );
     }
 
-    private function SetResponse($err_code, $msg)
+    private function SetResponse($err_code = -1, $msg = '')
     {
-        $response_arr["error_code"] = $err_code;
-        $response_arr["text"] = $msg;
+        $responseArr["error_code"] = $err_code;
+        $responseArr["text"] = $msg;
 
-        echo json_encode($response_arr);
+        return response()->json($responseArr);
     }
 
     public function MigrateFromNFO(Request $request)
@@ -211,12 +211,18 @@ class AddonsController extends Controller
         }
         else
         {
-            $this->SetResponse(1, "The file you specified is not accessible");
-            return;
+            return $this->SetResponse(1, "The file you specified is not accessible");
         }
 
         $parser = new Sexp();
-        $lisp_tree = $parser->parse($contents);
+        try
+        {
+            $lisp_tree = $parser->parse($contents);
+        }
+        catch(RuntimeException $ex)
+        {
+            return $this->SetResponse(3, "The file you specified is not a valid nfo file.");
+        }
 
         if($lisp_tree[0] != "supertux-addons")
         {
@@ -241,6 +247,6 @@ class AddonsController extends Controller
             }
         }
 
-        $this->SetResponse(-1, $this->addon_cnt." add-ons successfully imported.");
+        return $this->SetResponse(-1, $this->addon_cnt." add-ons successfully imported.");
     }
 }

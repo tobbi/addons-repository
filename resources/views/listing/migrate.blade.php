@@ -22,11 +22,10 @@ function performGETRequest($caller)
     nfoURL: nfoUrl
   },
   function(response) {
-    var $result = JSON.parse(response);
-    $progressBar.text($result.text);
+    $progressBar.text(response.text);
     $progressBar.removeClass('progress-bar-animated');
     $progressBar.width('100%');
-    if($result.error_code > -1)
+    if(response.error_code > -1)
     {
       $('#importModalLabel').text("Import failed");
       $progressBar.addClass('bg-danger');
