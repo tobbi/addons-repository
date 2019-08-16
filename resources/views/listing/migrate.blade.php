@@ -10,6 +10,7 @@ function performGETRequest($caller)
   $caller.setAttribute('disabled', '');
   
   $progressBar.width('20%');
+  $progressBar.text("");
   $progressBar.removeClass('bg-danger bg-success');
 
   $('#importModalLabel').text("Importing nfo file...");
