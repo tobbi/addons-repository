@@ -111,6 +111,7 @@ class ImportAddon implements ShouldQueue
     {
         $this->downloadZIP();
         $this->parseZIPNFOFile();
+        $this->addon->enabled = true;
         $this->addon->save();
     }
 }

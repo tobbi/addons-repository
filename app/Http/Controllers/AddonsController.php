@@ -17,7 +17,7 @@ class AddonsController extends Controller
      */
     public function ShowAll()
     {
-        $addons = Addon::all();
+        $addons = Addon::where('enabled', 1)->get();
         return view('listing.listing', ['addons' => $addons]);
     }
 
@@ -158,7 +158,7 @@ class AddonsController extends Controller
         $addon->md5 = $md5;
         $addon->author_id = $authorId;
         $addon->license_id = 1;
-        $addon->enabled = true;
+        $addon->enabled = false;
         $addon->type = $type;
         $addon->save();
 
