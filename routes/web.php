@@ -18,9 +18,10 @@ Route::get('/', function () {
 Route::get('/addons', 'AddonsController@showAll');
 Route::get('/addons/add', 'AddonsController@add');
 Route::get('/addons/migrate', 'AddonsController@migrate');
-Route::get('/info/{id}', 'AddonsController@viewDetails');
+Route::get('/info/{id}', 'AddonsController@viewDetails')->name('addon_info');
 Route::post('/addons/store', 'AddonsController@storeAddon');
 Route::post('/addons/parse-nfo', 'AddonsController@MigrateFromNFO');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/manage', 'HomeController@manage')->name('dashboard_manage');

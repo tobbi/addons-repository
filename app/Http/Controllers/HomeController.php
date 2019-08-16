@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Addon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,14 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * Show list of add-ons
+     */
+    public function manage()
+    {
+        $addons = Addon::all();
+        return view('manage', ['addons' => $addons]);
     }
 }
