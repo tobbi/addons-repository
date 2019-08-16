@@ -17,11 +17,13 @@ class AddonType extends Migration
         {
             $table->increments('id');
             $table->string("type");
+            $table->string('nfo_key');
         });
 
         DB::table('addonType')->insert([
-            ["type" => "Worldmap"],
-            ["type" => "Levelset"]
+            ["type" => "Worldmap", "nfo_key" => "worldmap"],
+            ["type" => "Levelset", "nfo_key" => "levelset"],
+            ["type" => "Language Pack", "nfo_key" => "languagepack"]
         ]);
     }
 

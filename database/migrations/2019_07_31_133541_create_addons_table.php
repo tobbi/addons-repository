@@ -26,7 +26,7 @@ class CreateAddonsTable extends Migration
             $table->integer('author_id')->unsigned();
             $table->integer('license_id')->unsigned();
             $table->boolean('enabled');
-            $table->foreign('author_id')->references('id')->on('users');
+            $table->foreign('author_id')->references('id')->on('authors');
             $table->foreign('license_id')->references('id')->on('licenses');
             $table->timestamps();
         });
