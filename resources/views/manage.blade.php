@@ -21,7 +21,11 @@
       <td>
         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary"><i class="fa fa-edit"></i></button>
+            @if($addon->enabled)
+            <button type="button" class="btn btn-secondary"><i class="fa fa-eye-slash"></i></button>
+            @else
             <button type="button" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
+            @endif
             <button type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
         </div>
       </td>
