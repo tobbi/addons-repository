@@ -26,8 +26,7 @@ function performGETRequest($caller)
   }).fail(
     function(response)
     {
-      console.log(response);
-      alert(response.err_code);
+      $("#toggleVisibilityModal").modal();
     });
 }
 </script>
@@ -66,4 +65,13 @@ function performGETRequest($caller)
   @endforeach
   </tbody>
 </table>
+@component('layout.modal')
+  @slot('modal_id', 'toggleVisibilityModal')
+  @slot('modal_title', 'Toggle visibility')
+  @slot('modal_content')
+    <p>The add-on you specified could not be found.</p>
+  @endslot
+  @slot('modal_ok_label', 'Import another nfo file')
+  @slot('modal_cancel_label', 'Return to listing')
+@endcomponent
 @endsection

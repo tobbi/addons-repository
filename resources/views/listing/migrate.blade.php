@@ -63,28 +63,17 @@ function performGETRequest($caller)
   </div>
   <button type="submit" class="btn btn-primary btn-import" onclick='performGETRequest(this);'>Import add-ons</button>
 <!-- </form> -->
-
-<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="importModalLabel">Importing add-ons...</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-import" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Importing add-ons...</div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Import another nfo file</button>
-        <a class="btn btn-primary" href="/addons" role="button">Return to listing</a>
-      </div>
-    </div>
+@component('layout.modal')
+  @slot('modal_id', 'importModal')
+  @slot('modal_title', 'Importing add-ons...')
+  @slot('modal_content')
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated progress-bar-import" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Importing add-ons...</div>
   </div>
-</div>
+  @endslot
+  @slot('modal_ok_label', 'Import another nfo file')
+  @slot('modal_cancel_label', 'Return to listing')
+@endcomponent
 
 </div>
 @endsection
