@@ -1,4 +1,35 @@
 @extends('dashboard')
+@section('additional_head_tags')
+<script type="text/javascript">
+function performGETRequest($caller)
+{
+  var id = $caller.getAttribute('data-id');
+  $.get('/addons/' + id + '/toggle_visibility', 
+  {
+    _token: "{{ csrf_token() }}",
+  }).done(
+  function(response) {
+    var $children = $($caller).children('i');
+    $children.removeClass("fa-eye fa-eye-slash");
+    if(response.is_enabled)
+    {
+      $children.addClass("fa-eye");
+      $($caller).removeClass('bg-danger');
+    }
+    else
+    {
+      $children.addClass("fa-eye-slash");
+      $($caller).addClass('bg-danger');
+    }
+  }).fail(
+    function(response)
+    {
+      console.log(response);
+      alert(response.err_code);
+    });
+}
+</script>
+@endsection
 
 @section('dashboard_content')
 <table class="table">
@@ -19,12 +50,12 @@
       <td>{{ $addon->slug }}</td>
       <td>{{ $addon->author->name }}</td>
       <td>
-        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+        <div class="btn-group btn-group-sm" role="group">
             <button type="button" class="btn btn-secondary"><i class="fa fa-edit"></i></button>
             @if($addon->enabled)
-            <button type="button" class="btn btn-secondary"><i class="fa fa-eye-slash"></i></button>
+            <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="performGETRequest(this);"><i class="fa fa-eye"></i></button>
             @else
-            <button type="button" class="btn btn-secondary"><i class="fa fa-eye"></i></button>
+            <button type="button" class="btn btn-secondary bg-danger" data-id="{{ $addon->id }}" onclick="performGETRequest(this);"><i class="fa fa-eye-slash"></i></button>
             @endif
             <button type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
         </div>

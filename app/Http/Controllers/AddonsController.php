@@ -38,6 +38,18 @@ class AddonsController extends Controller
         return view('listing.migrate');
     }
 
+    public function ToggleVisibility($id)
+    {
+        $addon = Addon::where('id', $id)->first();
+        if($addon == null)
+        {
+            return response()->json(["err_code" => 1, "err_msg" => "Toggling visibility failed. Addon not found."]);
+        }
+        $addon->enabled = !$addon->enabled;
+        $addon->save();
+        return response()->json(["err_code" => -1, "is_enabled" => $addon->enabled]);
+    }
+
     public function StoreAddon(Request $request)
     {
         $addon = new Addon();
