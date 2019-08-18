@@ -52,7 +52,7 @@ function performGETRequest($caller)
       <td>{{ $addon->author->name }}</td>
       <td>
         <div class="btn-group btn-group-sm" role="group">
-            <button type="button" class="btn btn-secondary"><i class="fa fa-edit"></i></button>
+            <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="$('#editAddonModal').modal()"><i class="fa fa-edit"></i></button>
             @if($addon->enabled)
             <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="performGETRequest(this);"><i class="fa fa-eye"></i></button>
             @else
@@ -71,7 +71,16 @@ function performGETRequest($caller)
   @slot('modal_content')
     <p>The add-on you specified could not be found.</p>
   @endslot
-  @slot('modal_ok_label', 'Import another nfo file')
-  @slot('modal_cancel_label', 'Return to listing')
 @endcomponent
+
+@component('layout.modal')
+  @slot('modal_id', 'editAddonModal')
+  @slot('modal_title', 'Edit addon')
+  @slot('modal_content')
+    <p>addon content</p>
+  @endslot
+  @slot('modal_ok_label', 'Save changes')
+  @slot('modal_cancel_label', 'Cancel')
+@endcomponent
+
 @endsection
