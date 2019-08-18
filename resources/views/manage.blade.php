@@ -1,4 +1,6 @@
 @extends('dashboard')
+
+@section('title', 'Manage add-ons')
 @section('additional_head_tags')
 <script type="text/javascript">
 function performGETRequest($caller)
