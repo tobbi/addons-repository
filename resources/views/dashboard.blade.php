@@ -11,7 +11,7 @@
                         <li class="list-group-item"><a href='{{ route('home') }}'>Home</a></li>
                         <li class="list-group-item"><a href='#'>Edit profile</a></li>
                         <li class="list-group-item"><a href='{{ route('dashboard_manage') }}'>Manage add-ons</a></li>
-                        <li class="list-group-item"><a href='#'>Morbi leo risus</a></li>
+                        <li class="list-group-item"><a href='#'>Manage SuperTux versions</a></li>
                         <li class="list-group-item"><a href='#'>Porta ac consectetur ac</a></li>
                         <li class="list-group-item"><a href='#'>Vestibulum at eros</a></li>
                     </ul>
