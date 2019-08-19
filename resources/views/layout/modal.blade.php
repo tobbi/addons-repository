@@ -13,6 +13,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $modal_ok_label ?? "OK"}}</button>
         <a class="btn btn-primary"
+        @if(!isset($modal_cancel_target))
+          data-dismiss="modal"
+        @endif
         href="{{ $modal_cancel_target ?? '#' }}"
         role="button">{{ $modal_cancel_label ?? "Cancel" }}</a>
       </div>
