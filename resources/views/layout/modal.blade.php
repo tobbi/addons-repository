@@ -12,7 +12,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ $modal_ok_label ?? "OK"}}</button>
-        <a class="btn btn-primary" href="/addons" role="button">{{ $modal_cancel_label ?? "Cancel" }}</a>
+        <a class="btn btn-primary"
+        href="{{ $modal_cancel_target ?? '#' }}"
+        role="button">{{ $modal_cancel_label ?? "Cancel" }}</a>
       </div>
     </div>
   </div>

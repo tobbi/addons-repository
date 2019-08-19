@@ -73,6 +73,7 @@ function performGETRequest($caller)
   @endslot
   @slot('modal_ok_label', 'Import another nfo file')
   @slot('modal_cancel_label', 'Return to listing')
+  @slot('modal_cancel_target', '/')
 @endcomponent
 
 </div>
