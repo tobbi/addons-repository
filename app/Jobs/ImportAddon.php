@@ -49,12 +49,13 @@ class ImportAddon implements ShouldQueue
         $file_contents = file_get_contents($url);
         $name = substr($url, strrpos($url, '/') + 1);
         $this->file_path = $this->download_directory."/".$name;
-        Storage::put($this->file_path, $file_contents);
+        Storage::disk('public')->put($this->file_path, $file_contents);
     }
 
     private function parseZIPNFOFile()
     {
-        $zip = zip_open(storage_path('app/'.$this->file_path));
+        $zip_location = Storage::disk('public')->path($this->file_path);
+        $zip = zip_open($zip_location);
         while($zip_entry = zip_read($zip))
         {
             $entry_name = zip_entry_name($zip_entry);
@@ -100,6 +101,7 @@ class ImportAddon implements ShouldQueue
             }
         }
         zip_close($zip);
+        $this->addon->http_url = $this->file_path;
     }
 
     /**

@@ -11,7 +11,7 @@
         @endif
         </small>
         <p class="card-text">{{ $description ?? "This is a great add-on"}}</p>
-        <a href="{{ $link ?? '#' }}" class="btn btn-primary float-right">Download</a>
+        <a href="{{ $link ? Storage::url($link) : '#' }}" class="btn btn-primary float-right">Download</a>
         </div>
     </div>
 </div>
