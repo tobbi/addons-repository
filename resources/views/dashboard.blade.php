@@ -13,6 +13,7 @@
                         <li class="list-group-item"><a href='{{ route('dashboard_manage') }}'>Manage add-ons</a></li>
                         <li class="list-group-item"><a href='#'>Manage SuperTux versions</a></li>
                         <li class="list-group-item"><a href='#'>Manage users</a></li>
+                        <li class="list-group-item"><a href='#'>Manage licenses</a></li>
                     </ul>
                     </div>
                     <div class="col">

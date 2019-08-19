@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Addon;
+use App\License;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,6 +34,7 @@ class HomeController extends Controller
     public function manage()
     {
         $addons = Addon::all();
-        return view('manage', ['addons' => $addons]);
+        $licenses = License::all();
+        return view('manage', ['addons' => $addons, 'licenses' => $licenses]);
     }
 }

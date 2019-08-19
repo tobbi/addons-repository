@@ -77,7 +77,32 @@ function performGETRequest($caller)
   @slot('modal_id', 'editAddonModal')
   @slot('modal_title', 'Edit addon')
   @slot('modal_content')
-    <p>addon content</p>
+  <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="The name of the add-on">
+    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Slug</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Slug of the add-on">
+  </div>
+  <div class="form-group row">
+    <label for="addonLicense" class="col-sm-2 col-form-label">License</label>
+    <div class="col-sm-10">
+    <select class="form-control" id="exampleFormControlSelect1">
+      @foreach($licenses as $license)
+      <option value="{{ $license->id }}">{{ $license->title }}</option>
+      @endforeach
+    </select>
+    <!-- <input type="text" class="form-control" id="addonLicense" placeholder="License" name='addon_license'> -->
+    </div>
+  </div>
+  <!-- <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div> -->
+</form>
   @endslot
   @slot('modal_ok_label', 'Save changes')
   @slot('modal_cancel_label', 'Cancel')
