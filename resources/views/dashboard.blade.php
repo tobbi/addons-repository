@@ -12,8 +12,7 @@
                         <li class="list-group-item"><a href='#'>Edit profile</a></li>
                         <li class="list-group-item"><a href='{{ route('dashboard_manage') }}'>Manage add-ons</a></li>
                         <li class="list-group-item"><a href='#'>Manage SuperTux versions</a></li>
-                        <li class="list-group-item"><a href='#'>Porta ac consectetur ac</a></li>
-                        <li class="list-group-item"><a href='#'>Vestibulum at eros</a></li>
+                        <li class="list-group-item"><a href='#'>Manage users</a></li>
                     </ul>
                     </div>
                     <div class="col">
