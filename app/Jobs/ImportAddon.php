@@ -50,7 +50,10 @@ class ImportAddon implements ShouldQueue
         $name = substr($url, strrpos($url, '/') + 1);
         $author = $this->addon->author->name;
         $slug = $this->addon->slug;
-        $this->file_path = $this->download_directory."/".$author."/".$slug."/".$name;
+        $timestamp = time();
+        $this->file_path = sprintf("%s/%s/%s/%s/%s", 
+            $this->download_directory,
+            $author, $slug, $timestamp, $name);
         Storage::disk('public')->put($this->file_path, $file_contents);
     }
 
