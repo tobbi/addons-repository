@@ -37,7 +37,7 @@ class AddonsController extends Controller
     public function Download($id)
     {
         $addon = Addon::where('id', $id)->first();
-        if($addon == null || $addon->http_url == null)
+        if($addon == null || !$addon->enabled || $addon->http_url == null)
         {
             return;
         }
