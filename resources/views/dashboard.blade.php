@@ -9,6 +9,7 @@
                     <div class="col col-md-2">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a href='{{ route('home') }}'>Home</a></li>
+                        <li class="list-group-item"><a href='#'>My add-ons</a></li>
                         <li class="list-group-item"><a href='#'>Edit profile</a></li>
                         <li class="list-group-item"><a href='{{ route('dashboard_manage') }}'>Manage add-ons</a></li>
                         <li class="list-group-item"><a href='#'>Manage SuperTux versions</a></li>
