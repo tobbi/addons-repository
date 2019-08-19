@@ -21,7 +21,7 @@ class ImportAddon implements ShouldQueue
 
     public $tries = 1;
 
-    private $download_directory = "imported_addons";
+    private $download_directory = "addons";
     private $file_path = null;
 
     /**
@@ -48,7 +48,8 @@ class ImportAddon implements ShouldQueue
         $url = $this->addon->http_url;
         $file_contents = file_get_contents($url);
         $name = substr($url, strrpos($url, '/') + 1);
-        $this->file_path = $this->download_directory."/".$name;
+        $author = $this->addon->author->name;
+        $this->file_path = $this->download_directory."/".$author."/".$name;
         Storage::disk('public')->put($this->file_path, $file_contents);
     }
 
