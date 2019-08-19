@@ -11,7 +11,6 @@
       @component('listing.addon-column')
         @slot('title'){{ $addon->title }} @endslot
         @slot('id'){{ $addon->id }} @endslot
-        @slot('link') {{ $addon->http_url }} @endslot
         @slot('version') v{{$addon->version }} @endslot
         @slot('author') {{ $addon->getRealAuthorName() }} @endslot
         @slot('hasLinkedUser') {{ $addon->author->hasLinkedUser() }} @endslot

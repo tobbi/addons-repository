@@ -9,6 +9,7 @@ use App\Jobs\ImportAddon;
 use App\License;
 use DrSlump\Sexp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AddonsController extends Controller
 {
@@ -31,6 +32,17 @@ class AddonsController extends Controller
     {
         $addon = Addon::where('id', $id)->first();
         return view('listing.info', ['addon' => $addon]);
+    }
+
+    public function Download($id)
+    {
+        $addon = Addon::where('id', $id)->first();
+        if($addon == null || $addon->http_url == null)
+        {
+            return;
+        }
+
+        return Storage::disk('public')->download($addon->http_url);
     }
 
     public function Migrate()
