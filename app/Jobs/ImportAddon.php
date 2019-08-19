@@ -49,7 +49,8 @@ class ImportAddon implements ShouldQueue
         $file_contents = file_get_contents($url);
         $name = substr($url, strrpos($url, '/') + 1);
         $author = $this->addon->author->name;
-        $this->file_path = $this->download_directory."/".$author."/".$name;
+        $slug = $this->addon->slug;
+        $this->file_path = $this->download_directory."/".$author."/".$slug."/".$name;
         Storage::disk('public')->put($this->file_path, $file_contents);
     }
 
