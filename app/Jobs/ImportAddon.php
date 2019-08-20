@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Addon;
+use App\AddonRevision;
 
 use DrSlump\Sexp;
 use Illuminate\Bus\Queueable;
@@ -23,6 +24,9 @@ class ImportAddon implements ShouldQueue
 
     private $download_directory = "addons";
     private $file_path = null;
+
+    private $hash_sha256 = null;
+    private $hash_md5 = null;
 
     /**
      * Create a new job instance.
@@ -47,6 +51,8 @@ class ImportAddon implements ShouldQueue
     {
         $url = $this->addon->http_url;
         $file_contents = file_get_contents($url);
+        $this->hash_md5 = hash('md5', $file_contents);
+        $this->hash_sha256 = hash('sha256', $file_contents);
         $name = substr($url, strrpos($url, '/') + 1);
         $author = $this->addon->author->name;
         $slug = $this->addon->slug;
@@ -107,6 +113,17 @@ class ImportAddon implements ShouldQueue
         }
         zip_close($zip);
         $this->addon->http_url = $this->file_path;
+
+        $revision = new AddonRevision();
+        $revision->addon_id = $this->addon->id;
+        $revision->author_id = $this->addon->author_id;
+        $revision->changed = date("Y-m-d H:i:s");
+        $revision->file_path = $this->file_path;
+        $revision->version = $this->addon->version;
+        $revision->sha256 = $this->hash_sha256;
+        $revision->md5 = $this->hash_md5;
+        $revision->revision_text = "Automated import via nfo file";
+        $revision->save();
     }
 
     /**
