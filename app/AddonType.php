@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AddonType extends Model
 {
-    protected $table = 'addonType';
+    protected $table = 'addontype';
+
+    public function addons()
+    {
+        return $this->hasMany('App\Addon');
+    }
 }

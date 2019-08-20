@@ -14,6 +14,7 @@
         @slot('version') v{{$addon->version }} @endslot
         @slot('author') {{ $addon->getRealAuthorName() }} @endslot
         @slot('hasLinkedUser') {{ $addon->author->hasLinkedUser() }} @endslot
+        @slot('type') {{ $addon->getType() }} @endslot
       @endcomponent
     @endforeach
     </div>
