@@ -7,7 +7,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>SuperTux - @yield('title')</title>
 
-        <script src="https://use.fontawesome.com/de0d6fe94d.js"></script>
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
