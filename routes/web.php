@@ -22,6 +22,7 @@ Route::get('/info/{id}', 'AddonsController@viewDetails')->name('addon_info');
 Route::post('/addons/store', 'AddonsController@storeAddon');
 Route::get('/addons/{id}/toggle_visibility', 'AddonsController@toggleVisibility')->name('addon_toggle_visibility');
 Route::get('/addons/{id}/download', 'AddonsController@download');
+Route::get('/addons/{id}/get_revisions', 'AddonsController@getRevisions');
 Route::post('/addons/parse-nfo', 'AddonsController@MigrateFromNFO');
 Auth::routes();
 

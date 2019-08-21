@@ -34,6 +34,17 @@ class AddonsController extends Controller
         return view('listing.info', ['addon' => $addon]);
     }
 
+    public function GetRevisions($id)
+    {
+        $addon = Addon::where('id', $id)->first();
+        if($addon == null)
+        {
+            return response()->json(["err_code" => 1, "err_msg" => "Addon not found."]);
+        }
+
+        return response()->json(["err_code" => -1, "revisions" => $addon->revisions->sortByDesc('updated_at')]);
+    }
+
     public function Download($id)
     {
         $addon = Addon::where('id', $id)->first();

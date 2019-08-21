@@ -3,32 +3,81 @@
 @section('title', 'Manage add-ons')
 @section('additional_head_tags')
 <script type="text/javascript">
-function performGETRequest($caller)
-{
-  var id = $caller.getAttribute('data-id');
-  $.get('/addons/' + id + '/toggle_visibility', 
-  {
-    _token: "{{ csrf_token() }}",
-  }).done(
-  function(response) {
-    var $children = $($caller).children('i');
-    $children.removeClass("fa-eye fa-eye-slash");
-    if(response.is_enabled)
+var AddonManager = {
+
+    _caller: null,
+
+    onError: function(response)
     {
-      $children.addClass("fa-eye");
-      $($caller).removeClass('bg-danger');
+        $("#toggleVisibilityModal").modal();
+    },
+
+    toggleVisibility: function($caller)
+    {
+        this._caller = $caller;
+        var id = $caller.getAttribute('data-id');
+        $.get('/addons/' + id + '/toggle_visibility', 
+        {
+            _token: "{{ csrf_token() }}",
+        })
+        .done(this.onVisibilityToggled)
+        .fail(this.onVisibilityToggleFailed);
+    },
+
+    onVisibilityToggled: function(response)
+    {
+        var $caller = AddonManager._caller;
+        var $children = $($caller).children('i');
+        $children.removeClass("fa-eye fa-eye-slash");
+
+        if(response.is_enabled)
+        {
+            $children.addClass("fa-eye");
+            $($caller).removeClass('bg-danger');
+        }
+        else
+        {
+            $children.addClass("fa-eye-slash");
+            $($caller).addClass('bg-danger');
+        }
+    },
+
+    onVisibilityToggleFailed: function(response)
+    {
+        $("#toggleVisibilityModal").modal();
+    },
+
+    onRevisionsGot: function(response)
+    {
+        var table = $('#viewRevisionsModal tbody');
+        table.empty();
+        for(var entry of Object.entries(response.revisions))
+        {
+            var revision = entry[1];
+            var elementStr = "<tr><td>" + revision.changed + "</td>";
+            elementStr += "<td>" + revision.author_id + "</td>";
+            elementStr += "<td>" + revision.revision_text + "</td></tr>";
+            table.append(elementStr);
+        }
+    },
+    
+    onRevisionsLoadFailed: function(response)
+    {
+    },
+
+    viewRevisions: function($el)
+    {
+        var id = $el.getAttribute('data-id');
+        var modal = $('#viewRevisionsModal');
+        modal.modal();
+        $.get('/addons/' + id + '/get_revisions', 
+        {
+            _token: "{{ csrf_token() }}",
+        })
+        .done(this.onRevisionsGot)
+        .fail(this.onRevisionsLoadFailed);
     }
-    else
-    {
-      $children.addClass("fa-eye-slash");
-      $($caller).addClass('bg-danger');
-    }
-  }).fail(
-    function(response)
-    {
-      $("#toggleVisibilityModal").modal();
-    });
-}
+};
 </script>
 @endsection
 
@@ -54,11 +103,12 @@ function performGETRequest($caller)
         <div class="btn-group btn-group-sm" role="group">
             <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="$('#editAddonModal').modal()"><i class="fa fa-edit"></i></button>
             @if($addon->enabled)
-            <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="performGETRequest(this);"><i class="fa fa-eye"></i></button>
+            <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="AddonManager.toggleVisibility(this);"><i class="fa fa-eye"></i></button>
             @else
-            <button type="button" class="btn btn-secondary bg-danger" data-id="{{ $addon->id }}" onclick="performGETRequest(this);"><i class="fa fa-eye-slash"></i></button>
+            <button type="button" class="btn btn-secondary bg-danger" data-id="{{ $addon->id }}" onclick="AddonManager.toggleVisibility(this);"><i class="fa fa-eye-slash"></i></button>
             @endif
-            <button type="button" class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}"><i class="fa fa-trash"></i></button>
+            <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="AddonManager.viewRevisions(this);"><i class="far fa-clipboard"></i></button>
         </div>
       </td>
     </tr>
@@ -106,6 +156,24 @@ function performGETRequest($caller)
   @endslot
   @slot('modal_ok_label', 'Save changes')
   @slot('modal_cancel_label', 'Cancel')
+@endcomponent
+
+@component('layout.modal')
+@slot('modal_id', 'viewRevisionsModal')
+@slot('modal_title', 'View Revisions')
+@slot('modal_content')
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+        <th scope="col">Date</th>
+        <th scope="col">User</th>
+        <th scope="col">Changes</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+@endslot
 @endcomponent
 
 @endsection
