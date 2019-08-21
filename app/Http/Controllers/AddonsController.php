@@ -172,7 +172,15 @@ class AddonsController extends Controller
             $authorId = $targetAuthor->id;
         }
 
-        $addon = new Addon();
+        $targetAddon = Addon::where('slug', $id)->first();
+        if($targetAddon == null)
+        {
+            $addon = new Addon();
+        }
+        else
+        {
+            $addon = $targetAddon;
+        }
         $addon->title = $title;
         $addon->version = 0.1;
         $addon->description = $title;
