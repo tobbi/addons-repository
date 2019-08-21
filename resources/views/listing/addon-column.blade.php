@@ -1,4 +1,4 @@
-<div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-2">
+<div class="col-10 col-sm-6 col-md-4 col-lg-4 col-xl-2 mb-2">
     <div class="card">
         <div class="card-header">{{ $type ?? "Worldmap" }}</div>
         <img class="card-img-top" src={{ $thumb ?? "https://camo.githubusercontent.com/181bc5d807b52e6d2b233ac3db72caea631a5168/68747470733a2f2f7777772e73757065727475782e6f72672f696d616765732f305f355f312f305f355f315f332e706e67"}} alt="Card image cap">
