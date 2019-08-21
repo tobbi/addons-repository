@@ -55,6 +55,7 @@ var AddonManager = {
         {
             var revision = entry[1];
             var elementStr = "<tr><td>" + revision.changed + "</td>";
+                elementStr += "<td>" + revision.version + "</td>";
             elementStr += "<td>" + revision.author_id + "</td>";
             elementStr += "<td>" + revision.revision_text + "</td></tr>";
             table.append(elementStr);
@@ -166,6 +167,7 @@ var AddonManager = {
     <thead class="thead-light">
         <tr>
         <th scope="col">Date</th>
+        <th scope="col">Version</th>
         <th scope="col">User</th>
         <th scope="col">Changes</th>
         </tr>
