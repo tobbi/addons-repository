@@ -109,6 +109,8 @@ class ImportAddon implements ShouldQueue
                 {
                     $this->addon->description .= "\r\n".$ex->getMessage();
                 }
+
+                break;
             }
         }
         zip_close($zip);
