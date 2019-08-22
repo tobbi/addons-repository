@@ -42,7 +42,7 @@ class AddonsController extends Controller
             return response()->json(["err_code" => 1, "err_msg" => "Addon not found."]);
         }
 
-        return response()->json(["err_code" => -1, "revisions" => $addon->revisions->sortByDesc('updated_at')]);
+        return response()->json(["err_code" => -1, "revisions" => $addon->revisions->load('author')]);
     }
 
     public function Download($id)
