@@ -56,7 +56,7 @@ var AddonManager = {
             var revision = entry[1];
             var elementStr = "<tr><td>" + revision.changed + "</td>";
                 elementStr += "<td>" + revision.version + "</td>";
-            elementStr += "<td>" + revision.author_id + "</td>";
+            elementStr += "<td>" + revision.author.name + "</td>";
             elementStr += "<td>" + revision.revision_text + "</td></tr>";
             table.append(elementStr);
         }
