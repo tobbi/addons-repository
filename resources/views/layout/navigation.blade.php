@@ -20,7 +20,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             @foreach($versions as $version)
-                <a class="dropdown-item" href="/addons?v={{ $version }}">{{ $version }}</a>
+                <a class="dropdown-item" href="/addons?v={{ $version->id }}">{{ $version->name }}</a>
             @endforeach()
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/addons">All versions</a>

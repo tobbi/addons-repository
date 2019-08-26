@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\AddonType;
+use App\SuperTuxVersion;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('versions', ['0.5.1', '0.6.0']);
+        View::share('versions', SuperTuxVersion::all());
         View::share('types', AddonType::all());
     }
 }
