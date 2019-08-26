@@ -54,7 +54,7 @@ function prefillVersionSelect($el)
   var versionRegEx = /\d_\d(_\d)?/;
   if(versionRegEx.test($url))
   {
-    var $match = versionRegEx.exec($url)[0].replace("_", ".");
+    var $match = versionRegEx.exec($url)[0].replace(/_/g, ".");
     // Check exact match:
     $("#supertux_version option").each(function($option, $el) {
       var option_val = $($el).text();
