@@ -17,10 +17,12 @@ function performGETRequest($caller)
   modal.modal();
 
   var nfoUrl = document.getElementById('nfoURL').value;
+  var stVersion = document.getElementById('supertux_version').value;
   $.post('/addons/parse-nfo', 
   {
     _token: "{{ csrf_token() }}",
-    nfoURL: nfoUrl
+    nfoURL: nfoUrl,
+    stVersion: stVersion
   }).done(
   function(response) {
     $progressBar.text(response.text);
@@ -65,9 +67,9 @@ function performGETRequest($caller)
   <div class="form-group row">
     <label for="supertux_version" class="col-sm-2 col-form-label">SuperTux version</label>
     <div class="col-sm-10">
-      <select class="form-control" id="supertux_version">
+      <select class="form-control" id="supertux_version" name="supertux_version">
         @foreach($st_versions as $version)
-      <option id="{{ $version->id }}">{{ $version->name }}</option>
+      <option value="{{ $version->id }}">{{ $version->name }}</option>
         @endforeach
       </select>
     </div>

@@ -248,7 +248,13 @@ class AddonsController extends Controller
     {
         $this->ClearResponse();
         $nfo_url = $request->nfoURL;
+        $st_version = $request->stVersion;
         $this->addon_cnt = 0;
+
+        if($st_version == null)
+        {
+            return $this->SetResponse(4, "Invalid SuperTux version specified");
+        }
 
         if($this->urlExists($nfo_url))
         {
