@@ -59,6 +59,20 @@ function performGETRequest($caller)
     <div class="col-sm-10">
     <input type="url" class="form-control" id="nfoURL" placeholder="http://www.example.com/v0.5.0.nfo" name="nfoURL">
     </div>
+
+    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+  <div class="form-group row">
+    <label for="supertux_version" class="col-sm-2 col-form-label">SuperTux version</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="supertux_version">
+        @foreach($st_versions as $version)
+      <option id="{{ $version->id }}">{{ $version->name }}</option>
+        @endforeach
+      </select>
+    </div>
+  </div>
+    
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <button type="submit" class="btn btn-primary btn-import" onclick='performGETRequest(this);'>Import add-ons</button>

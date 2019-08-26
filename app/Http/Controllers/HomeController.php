@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Addon;
 use App\License;
+use App\SuperTuxVersion;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -35,6 +36,7 @@ class HomeController extends Controller
     {
         $addons = Addon::all();
         $licenses = License::all();
-        return view('manage', ['addons' => $addons, 'licenses' => $licenses]);
+        $st_versions = SuperTuxVersion::all();
+        return view('manage', ['addons' => $addons, 'licenses' => $licenses, 'st_versions' => $st_versions]);
     }
 }

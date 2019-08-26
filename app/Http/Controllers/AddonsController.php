@@ -7,6 +7,7 @@ use App\AddonType;
 use App\Author;
 use App\Jobs\ImportAddon;
 use App\License;
+use App\SuperTuxVersion;
 use DrSlump\Sexp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +43,7 @@ class AddonsController extends Controller
             return response()->json(["err_code" => 1, "err_msg" => "Addon not found."]);
         }
 
-        return response()->json(["err_code" => -1, "revisions" => $addon->revisions->load('author')]);
+        return response()->json(["err_code" => -1, "revisions" => $addon->revisions->load('author')->sortByDesc('id')]);
     }
 
     public function Download($id)
@@ -58,7 +59,8 @@ class AddonsController extends Controller
 
     public function Migrate()
     {
-        return view('listing.migrate');
+        $st_versions = SuperTuxVersion::all();
+        return view('listing.migrate', ['st_versions' => $st_versions]);
     }
 
     public function ToggleVisibility($id)
