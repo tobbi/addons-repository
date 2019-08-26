@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Addon;
 use App\AddonRevision;
+use App\SuperTuxVersionToAddonRevision;
 
 use DrSlump\Sexp;
 use Illuminate\Bus\Queueable;
@@ -19,6 +20,7 @@ class ImportAddon implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $addon;
+    protected $st_version;
 
     public $tries = 1;
 
@@ -33,9 +35,10 @@ class ImportAddon implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Addon $addon)
+    public function __construct(Addon $addon, string $st_version)
     {
         $this->addon = $addon;
+        $this->st_version = $st_version;
     }
 
     function endsWith($string, $endString) 
@@ -126,6 +129,18 @@ class ImportAddon implements ShouldQueue
         $revision->md5 = $this->hash_md5;
         $revision->revision_text = "Automated import via nfo file";
         $revision->save();
+
+        $st_version_to_addon_revision = SuperTuxVersionToAddonRevision::where(["supertux_version_id" => $this->st_version,
+                                                                               "addon_id"            => $this->addon->id])->first();
+        if($st_version_to_addon_revision == null)
+        {
+            $st_version_to_addon_revision = new SuperTuxVersionToAddonRevision();
+            $st_version_to_addon_revision->supertux_version_id = $this->st_version;
+            $st_version_to_addon_revision->addon_id = $this->addon->id;
+        }
+        $st_version_to_addon_revision->revision_id = $revision->id;
+        $st_version_to_addon_revision->save();
+        
     }
 
     /**

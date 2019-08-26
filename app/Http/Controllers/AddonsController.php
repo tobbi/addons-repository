@@ -92,7 +92,7 @@ class AddonsController extends Controller
      * Parses one block of add-ons in the nfo file
      * and adds it to the database.
      */
-    private function _parseAddonInfo(array $addonInfo)
+    private function _parseAddonInfo(array $addonInfo, string $st_version)
     {
         $id = null;
         $kind = null;
@@ -208,7 +208,7 @@ class AddonsController extends Controller
         $addon->save();
 
         // Do further import steps:
-        ImportAddon::dispatch($addon);
+        ImportAddon::dispatch($addon, $st_version);
 
         $this->addon_cnt++;
     }
@@ -289,7 +289,7 @@ class AddonsController extends Controller
                 case "array":
                 if($item[0] == "supertux-addoninfo")
                 {
-                    $this->_parseAddonInfo($item);
+                    $this->_parseAddonInfo($item, $st_version);
                 }
                 break;
 
