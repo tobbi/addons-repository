@@ -47,6 +47,23 @@ function performGETRequest($caller)
       $caller.removeAttribute('disabled');
     });
 }
+
+function prefillVersionSelect($el)
+{
+  var $url = $($el).val();
+  var versionRegEx = /\d_\d(_\d)?/;
+  if(versionRegEx.test($url))
+  {
+    var $match = versionRegEx.exec($url)[0].replace("_", ".");
+    // Check exact match:
+    $("#supertux_version option").each(function($option, $el) {
+      var option_val = $($el).text();
+      var option_value_attr = $($el).attr("value");
+      if($match == option_val || $match + ".0" == option_val || $match == option_val + ".0")
+        $("#supertux_version").val($option_value_attr);
+    })
+  }
+}
 </script>
 @endsection
 
@@ -59,7 +76,7 @@ function performGETRequest($caller)
 <div class="form-group row">
     <label for="nfoURL" class="col-sm-2 col-form-label">.nfo URL</label>
     <div class="col-sm-10">
-    <input type="url" class="form-control" id="nfoURL" placeholder="http://www.example.com/v0.5.0.nfo" name="nfoURL">
+    <input type="url" class="form-control" id="nfoURL" placeholder="http://www.example.com/v0.5.0.nfo" name="nfoURL" oninput="prefillVersionSelect(this);">
     </div>
 
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
