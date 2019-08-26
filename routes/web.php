@@ -19,6 +19,7 @@ Route::get('/addons', 'AddonsController@showAll');
 Route::get('/addons/add', 'AddonsController@add');
 Route::get('/addons/migrate', 'AddonsController@migrate');
 Route::get('/info/{id}', 'AddonsController@viewDetails')->name('addon_info');
+Route::get('/index/{version}', 'AddonsController@createNFO');
 Route::post('/addons/store', 'AddonsController@storeAddon');
 Route::get('/addons/{id}/toggle_visibility', 'AddonsController@toggleVisibility')->name('addon_toggle_visibility');
 Route::get('/addons/{id}/download', 'AddonsController@download');
