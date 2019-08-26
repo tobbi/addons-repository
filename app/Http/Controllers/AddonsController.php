@@ -51,6 +51,7 @@ class AddonsController extends Controller
     public function CreateNFO($version)
     {
         $sexp = new Sexp();
+        $sexp->setForcedStringEscape(true);
         $st_version = SuperTuxVersion::where('name', $version)->first();
         $addons_for_version = SuperTuxVersionToAddonRevision::where('supertux_version_id', $st_version->id)->get();
         $target_array = array(
@@ -70,7 +71,7 @@ class AddonsController extends Controller
             $addon_array = array();
             $addon_array[0] = "supertux-addoninfo";
             $addon_array[1] = array("id", $real_addon->slug);
-            $addon_array[2] = array("version", $revision->version);
+            $addon_array[2] = array("version", (float)$revision->version);
             $addon_array[7] = array("type", $type->nfo_key);
             $addon_array[3] = array("title", $real_addon->title);
             $addon_array[4] = array("author", $real_addon->getRealAuthorName());
