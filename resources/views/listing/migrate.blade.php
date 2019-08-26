@@ -60,7 +60,7 @@ function prefillVersionSelect($el)
       var option_val = $($el).text();
       var option_value_attr = $($el).attr("value");
       if($match == option_val || $match + ".0" == option_val || $match == option_val + ".0")
-        $("#supertux_version").val($option_value_attr);
+        $("#supertux_version").val(option_value_attr);
     })
   }
 }
