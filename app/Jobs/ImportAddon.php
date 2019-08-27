@@ -7,6 +7,8 @@ use App\AddonRevision;
 use App\SuperTuxVersion;
 use App\SuperTuxVersionToAddonRevision;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 use DrSlump\Sexp;
 use Illuminate\Bus\Queueable;
 use Illuminate\Http\File;
@@ -131,6 +133,15 @@ class ImportAddon implements ShouldQueue
         $revision->md5 = $this->hash_md5;
         $revision->revision_text = "SuperTux ".$supertux_version->name.": Automated import via nfo file";
         $revision->save();
+
+        $discord_webhook = env('DISCORD_WEBHOOK', null);
+        if($discord_webhook != null)
+        {
+            $client = new Client();
+            $response = $client->post($discord_webhook, [
+                RequestOptions::JSON => ['content' => 'Update: '.$this->addon->description.": ".$revision->revision_text]
+            ]);
+        }
 
         $st_version_to_addon_revision = SuperTuxVersionToAddonRevision::where(["supertux_version_id" => $this->st_version,
                                                                                "addon_id"            => $this->addon->id])->first();
