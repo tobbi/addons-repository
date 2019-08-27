@@ -22,6 +22,7 @@
       <td>
           <div class="btn-group btn-group-sm" role="group">
           <button type="button" class="btn btn-secondary"><a href="{{ route('addon_view_nfo', $version->name) }}"><i class="fa fa-edit"></i></a></button>
+          <button type="button" class="btn btn-secondary"><a href="{{ $version->github_url }}"><i class="fa fa-arrow-right"></i></a></button>
               {{-- @if($addon->enabled)
               <button type="button" class="btn btn-secondary" data-id="{{ $addon->id }}" onclick="AddonManager.toggleVisibility(this);"><i class="fa fa-eye"></i></button>
               @else
