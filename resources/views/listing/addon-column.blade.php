@@ -12,7 +12,19 @@
         @endif
         </small>
         <p class="card-text">{{ $description ?? "This is a great add-on"}}</p>
-        <a href="/addons/{{ $id }}/download" class="btn btn-primary float-right">Download</a>
+        <div class="btn-group float-right">
+            <a href="/addons/{{ $id }}/download" class="btn btn-primary" role="button">Download</a>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
