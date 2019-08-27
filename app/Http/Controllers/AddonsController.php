@@ -69,15 +69,15 @@ class AddonsController extends Controller
             $type = AddonType::where('id', $real_addon->type)->first();
 
             $addon_array = array();
-            $addon_array[0] = "supertux-addoninfo";
-            $addon_array[1] = array("id", $real_addon->slug);
-            $addon_array[2] = array("version", (float)$revision->version);
-            $addon_array[7] = array("type", $type->nfo_key);
-            $addon_array[3] = array("title", $real_addon->title);
-            $addon_array[4] = array("author", $real_addon->getRealAuthorName());
-            $addon_array[5] = array("url", url("/").Storage::url($revision->file_path));
-            $addon_array[6] = array("md5", $revision->md5);
-            $addon_array[8] = array("license", $license->title);
+            $addon_array[] = "supertux-addoninfo";
+            $addon_array[] = array("id", $real_addon->slug);
+            $addon_array[] = array("version", (float)$revision->version);
+            $addon_array[] = array("type", $type->nfo_key);
+            $addon_array[] = array("title", $real_addon->title);
+            $addon_array[] = array("author", $real_addon->getRealAuthorName());
+            $addon_array[] = array("license", $license->title);
+            $addon_array[] = array("url", url("/").Storage::url($revision->file_path));
+            $addon_array[] = array("md5", $revision->md5);
             array_push($target_array, $addon_array);
         }
         return response($sexp->serialize($target_array))->header('Content-Type', 'text/plain');
