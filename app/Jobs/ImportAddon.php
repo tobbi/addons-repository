@@ -28,6 +28,8 @@ class ImportAddon implements ShouldQueue
     private $download_directory = "addons";
     private $file_path = null;
 
+    private $timestamp = null;
+
     private $hash_sha256 = null;
     private $hash_md5 = null;
 
@@ -60,10 +62,10 @@ class ImportAddon implements ShouldQueue
         $name = substr($url, strrpos($url, '/') + 1);
         $author = $this->addon->author->name;
         $slug = $this->addon->slug;
-        $timestamp = time();
+        $this->timestamp = time();
         $this->file_path = sprintf("%s/%s/%s/%s/%s", 
             $this->download_directory,
-            $author, $slug, $timestamp, $name);
+            $author, $slug, $this->timestamp, $name);
         Storage::disk('public')->put($this->file_path, $file_contents);
     }
 
@@ -127,7 +129,7 @@ class ImportAddon implements ShouldQueue
         $revision->author_id = $this->addon->author_id;
         $revision->changed = date("Y-m-d H:i:s");
         $revision->file_path = $this->file_path;
-        $revision->version = $this->addon->version;
+        $revision->version = $this->timestamp;
         $revision->sha256 = $this->hash_sha256;
         $revision->md5 = $this->hash_md5;
         $revision->revision_text = "SuperTux ".$supertux_version->name.": Automated import via nfo file";
