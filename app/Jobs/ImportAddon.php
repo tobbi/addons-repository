@@ -125,7 +125,7 @@ class ImportAddon implements ShouldQueue
         if($this->addon->slug == "addon-slug-tbd")
         {
             // No add-on slug could be read. Let's generate one:
-            $this->addon->slug = strtolower($this->addon->getRealAuthorName())."-".strtolower($this->addon->title);
+            $this->addon->slug = strtolower($this->addon->getRealAuthorName())." ".strtolower($this->addon->title);
             $this->addon->slug = preg_replace("/[^A-Za-z0-9 ]/", '', $this->addon->slug);
             $this->addon->slug = str_replace(" ", "-", $this->addon->slug);
         }
