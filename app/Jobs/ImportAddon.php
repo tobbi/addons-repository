@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Addon;
 use App\AddonRevision;
+use App\SuperTuxVersion;
 use App\SuperTuxVersionToAddonRevision;
 
 use DrSlump\Sexp;
@@ -119,6 +120,8 @@ class ImportAddon implements ShouldQueue
         zip_close($zip);
         $this->addon->http_url = $this->file_path;
 
+        $supertux_version = SuperTuxVersion::where("id", $this->st_version)->first();
+
         $revision = new AddonRevision();
         $revision->addon_id = $this->addon->id;
         $revision->author_id = $this->addon->author_id;
@@ -127,7 +130,7 @@ class ImportAddon implements ShouldQueue
         $revision->version = $this->addon->version;
         $revision->sha256 = $this->hash_sha256;
         $revision->md5 = $this->hash_md5;
-        $revision->revision_text = "Automated import via nfo file";
+        $revision->revision_text = "SuperTux ".$supertux_version->name.": Automated import via nfo file";
         $revision->save();
 
         $st_version_to_addon_revision = SuperTuxVersionToAddonRevision::where(["supertux_version_id" => $this->st_version,
