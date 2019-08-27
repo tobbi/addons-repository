@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Addon;
 use App\AddonType;
+use App\AddonRevision;
 use App\Author;
 use App\Jobs\ImportAddon;
 use App\License;
 use App\SuperTuxVersion;
+use App\SuperTuxVersionToAddonRevision;
 use DrSlump\Sexp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -44,6 +46,41 @@ class AddonsController extends Controller
         }
 
         return response()->json(["err_code" => -1, "revisions" => $addon->revisions->load('author')->sortByDesc('id')]);
+    }
+
+    public function CreateNFO($version)
+    {
+        $sexp = new Sexp();
+        $sexp->setForcedStringEscape(true);
+        $st_version = SuperTuxVersion::where('name', $version)->first();
+        $addons_for_version = SuperTuxVersionToAddonRevision::where('supertux_version_id', $st_version->id)->get();
+        $target_array = array(
+            "supertux-addons"
+        );
+        foreach($addons_for_version as $addon)
+        {
+            $real_addon = Addon::where('id', $addon->addon_id)->first();
+
+            if(!$real_addon->enabled)
+                continue;
+
+            $revision = AddonRevision::where('id', $addon->revision_id)->first();
+            $license = License::where('id', $real_addon->license_id)->first();
+            $type = AddonType::where('id', $real_addon->type)->first();
+
+            $addon_array = array();
+            $addon_array[0] = "supertux-addoninfo";
+            $addon_array[1] = array("id", $real_addon->slug);
+            $addon_array[2] = array("version", (float)$revision->version);
+            $addon_array[7] = array("type", $type->nfo_key);
+            $addon_array[3] = array("title", $real_addon->title);
+            $addon_array[4] = array("author", $real_addon->getRealAuthorName());
+            $addon_array[5] = array("url", url("/").Storage::url($revision->file_path));
+            $addon_array[6] = array("md5", $revision->md5);
+            $addon_array[8] = array("license", $license->title);
+            array_push($target_array, $addon_array);
+        }
+        return response($sexp->serialize($target_array))->header('Content-Type', 'text/plain');
     }
 
     public function Download($id)
