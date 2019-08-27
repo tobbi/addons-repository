@@ -14,6 +14,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class ImportAddon implements ShouldQueue
@@ -44,15 +45,6 @@ class ImportAddon implements ShouldQueue
         $this->st_version = $st_version;
     }
 
-    function endsWith($string, $endString) 
-    { 
-        $len = strlen($endString); 
-        if ($len == 0) { 
-            return true; 
-        } 
-        return (substr($string, -$len) === $endString); 
-    }
-
     private function downloadZIP()
     {
         $url = $this->addon->http_url;
@@ -76,7 +68,7 @@ class ImportAddon implements ShouldQueue
         while($zip_entry = zip_read($zip))
         {
             $entry_name = zip_entry_name($zip_entry);
-            if($this->endsWith($entry_name, ".nfo"))
+            if(Str::endsWith($entry_name, ".nfo"))
             {
                 zip_entry_open($zip, $zip_entry);
                 $contents = zip_entry_read($zip_entry);
