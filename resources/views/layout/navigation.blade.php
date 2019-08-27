@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">
-        <img src="https://raw.githubusercontent.com/SuperTux/supertux/master/data/images/engine/icons/supertux.png" style="width:40px;" alt="logo">
+    <img src="{{ asset('images/supertux.png') }}" style="width:40px;" alt="logo">
         SuperTux Add-Ons</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
