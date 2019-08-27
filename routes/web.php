@@ -19,7 +19,7 @@ Route::get('/addons', 'AddonsController@showAll');
 Route::get('/addons/add', 'AddonsController@add');
 Route::get('/addons/migrate', 'AddonsController@migrate');
 Route::get('/info/{id}', 'AddonsController@viewDetails')->name('addon_info');
-Route::get('/index/{version}', 'AddonsController@createNFO');
+Route::get('/index/{version}', 'AddonsController@createNFO')->name('addon_view_nfo');
 Route::post('/addons/store', 'AddonsController@storeAddon');
 Route::get('/addons/{id}/toggle_visibility', 'AddonsController@toggleVisibility')->name('addon_toggle_visibility');
 Route::get('/addons/{id}/download', 'AddonsController@download');
@@ -29,3 +29,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/manage', 'HomeController@manage')->name('dashboard_manage');
+Route::get('/home/manage_supertux_versions', 'HomeController@manage_supertux_versions')->name('dashboard_supertux_versions');

@@ -39,4 +39,13 @@ class HomeController extends Controller
         $st_versions = SuperTuxVersion::all();
         return view('manage', ['addons' => $addons, 'licenses' => $licenses, 'st_versions' => $st_versions]);
     }
+
+    /**
+     * Manage SuperTux versions
+     */
+    public function manage_supertux_versions()
+    {
+        $st_versions = SuperTuxVersion::all();
+        return view('manage_supertux_versions', ['st_versions' => $st_versions]);
+    }
 }
