@@ -19,7 +19,7 @@
             </button>
             <div class="dropdown-menu">
             @foreach($versions as $version)
-                <a class="dropdown-item" href="#">Download for {{$version->name}}</a>
+                <a class="dropdown-item" href="#">Download for v{{$version->name}}</a>
             @endforeach
             </div>
             </div>
