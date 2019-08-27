@@ -23,7 +23,7 @@ function createSlug($el)
 <div class="form-group row">
     <label for="addonZIP" class="col-sm-2 col-form-label">File</label>
     <div class="col-sm-10">
-    <input type="file" class="form-control" id="addonZIP" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on..." name="addon_file">
+    <input type="file" class="form-control" id="addonZIP" aria-describedby="emailHelp" placeholder="Select ZIP file of add-on..." name="addon_file" accept="application/zip">
     </div>
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
