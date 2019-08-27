@@ -66,8 +66,13 @@ function createSlug($el)
   <div class="form-group row">
     <label for="addonSTVersion" class="col-sm-2 col-form-label">SuperTux versions</label>
     <div class="col-sm-10">
-    <input type="checkbox" class="form-control" id="addonSTVersion" placeholder="SuperTux versions">
+    @foreach($versions as $version)
+    <div class="form-check form-check-inline">
+    <input type="checkbox" class="form-check-input" id="version{{$version->id}}" placeholder="SuperTux versions">
+    <label for="version{{$version->id}}" class="form-check-label">{{ $version->name }}</label>
     </div>
+    @endforeach
+  </div>
   </div>
   <!-- <div class="form-check row">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
