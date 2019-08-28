@@ -36,7 +36,7 @@ class DiscordAddonUpdateNotificationListener
             $addon = $event->addon;
             $revision = $event->revision;
             $response = $client->post($discord_webhook, [
-                RequestOptions::JSON => ['content' => 'Update: '.$addon->description.": ".$revision->revision_text.". Check it out: ".$revision->getDownloadUrl()]
+                RequestOptions::JSON => ['content' => 'Update: '.$addon->description.": ".$revision->revision_text.". Check it out: ".route('addon_download', $addon->id)]
             ]);
         }
     }

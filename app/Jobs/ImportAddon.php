@@ -119,7 +119,7 @@ class ImportAddon implements ShouldQueue
 
         if($this->addon->slug == "addon-slug-tbd")
         {
-            $this->addon->slug = Str::kebab($this->addon->getRealAuthorName())." ".strtolower($this->addon->title);
+            $this->addon->slug = Str::slug($this->addon->getRealAuthorName())." ".strtolower($this->addon->title);
         }
 
         $supertux_version = SuperTuxVersion::where("id", $this->st_version)->first();
