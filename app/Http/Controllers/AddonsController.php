@@ -76,7 +76,7 @@ class AddonsController extends Controller
             $addon_array[] = array("title", $real_addon->title);
             $addon_array[] = array("author", $real_addon->getRealAuthorName());
             $addon_array[] = array("license", $license->title);
-            $addon_array[] = array("url", url("/").Storage::url($revision->file_path));
+            $addon_array[] = array("url", $revision->getDownloadUrl());
             $addon_array[] = array("md5", $revision->md5);
             array_push($target_array, $addon_array);
         }
